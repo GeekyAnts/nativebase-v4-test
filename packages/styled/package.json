@@ -1,0 +1,37 @@
+{
+  "name": "styled",
+  "version": "0.0.0",
+  "main": "lib/commonjs/index",
+  "types": "lib/typescript/src/index.d.ts",
+  "module": "lib/module/index",
+  "react-native": "src/index",
+  "source": "src/index",
+  "scripts": {
+    "dev": "bob build",
+    "clean": "rm -rf lib"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "@types/react-native": "^0.69.15",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-native": "^0.70.3",
+    "ui": "*"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ]
+}
