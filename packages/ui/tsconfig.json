@@ -6,9 +6,12 @@
   "exclude": [
     "dist",
     "build",
-    "node_modules"
+    "node_modules",
+    "example"
   ],
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false
   }
 }
