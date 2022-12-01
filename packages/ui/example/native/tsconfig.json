@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "ui": [
+      "@native-base/ui-test": [
         "../../src"
       ]
     },

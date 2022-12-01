@@ -185,9 +185,6 @@ const resolveSxRecursive = (
   resolveDecendantStyles: any,
   parent: any = ""
 ) => {
-  if (typeof sx === "undefined") return;
-  console.log(sx, "#########");
-
   Object.keys(sx).forEach((key) => {
     if (key === "style") {
       let resolvedStyle = resolvedTokenization(sx?.style, config);

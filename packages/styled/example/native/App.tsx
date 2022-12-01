@@ -1,7 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-import { styled } from "styled";
+import { styled } from "@native-base/styled-test";
 // import { Button } from "ui";
 // import { ButtonExpo } from "./button-expo";
 

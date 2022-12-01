@@ -1,4 +1,4 @@
-import { styled } from "styled";
+import { styled } from "@native-base/styled-test";
 import { Pressable } from "react-native";
 export default styled(
   Pressable,
@@ -29,7 +29,9 @@ export default styled(
         // p: "$10",
       },
       greenBox: {
-        bg: "$secondary.400",
+        style: {
+          bg: "$secondary.500",
+        },
         // px: "$10",
       },
     },
@@ -69,9 +71,9 @@ export default styled(
   },
   {
     descendentStyle: ["_text"],
-    states: ["hover", "focus", "pressed"],
-    aliases: {
-      bg: "backgroundColor",
-    },
+    // states: ["hover", "focus", "pressed"],
+    // aliases: {
+    //   bg: "backgroundColor",
+    // },
   }
 );

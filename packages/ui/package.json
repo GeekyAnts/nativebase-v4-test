@@ -28,7 +28,7 @@
     "react-native": "^0.70.3"
   },
   "peerDependencies": {
-    "styled": "*"
+    "@native-base/styled-test": "*"
   },
   "react-native-builder-bob": {
     "source": "src",

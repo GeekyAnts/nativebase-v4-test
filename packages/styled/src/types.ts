@@ -109,7 +109,7 @@ export type ThemeType = Partial<IThemeProps>;
 //Config typings
 interface IConfigProps {
   descendentStyle: Array<string>;
-  consumeStyle: Array<string>;
+  ancestorStyle: Array<string>;
 }
 
 export type ConfigType = Partial<IConfigProps>;

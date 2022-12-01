@@ -27,7 +27,7 @@
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "styled": "*"
+    "@native-base/styled-test": "*"
   },
   "private": true
 }

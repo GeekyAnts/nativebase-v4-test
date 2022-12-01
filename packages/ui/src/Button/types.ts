@@ -1,5 +1,5 @@
 import type { PressableProps } from "react-native";
-import type { SxProps } from "styled";
+import type { SxProps } from "@native-base/styled-test";
 
 interface IButtonProps extends PressableProps {
   /**

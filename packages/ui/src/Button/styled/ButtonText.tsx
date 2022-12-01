@@ -1,5 +1,5 @@
 import { Text } from "react-native";
-import { styled } from "styled";
+import { styled } from "@native-base/styled-test";
 
 export default styled(
   Text,
