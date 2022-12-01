@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "react-native-builder-bob": "^0.20.1",
     "tsconfig": "*",
     "typescript": "^4.7.4"
@@ -27,7 +28,12 @@
     "output": "lib",
     "targets": [
       "commonjs",
-      "module",
+      [
+        "module",
+        {
+          "babelrc": true
+        }
+      ],
       "typescript"
     ]
   },
