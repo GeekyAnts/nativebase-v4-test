@@ -16,23 +16,31 @@
     "@types/react-native": "^0.69.15",
     "lodash.merge": "^4.6.2",
     "react-native-builder-bob": "^0.20.1",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "tsconfig": "*",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
     "react": "^18.1.0",
-    "react-native": "^0.70.3",
-    "styled": "*"
+    "react-native": "^0.70.3"
   },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
     "targets": [
       "commonjs",
-      "module",
+      [
+        "module",
+        {
+          "babelrc": true
+        }
+      ],
       "typescript"
     ]
+  },
+  "peerDependencies": {
+    "styled": "*"
   },
   "files": [
     "lib/",
