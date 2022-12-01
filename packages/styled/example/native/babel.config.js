@@ -9,7 +9,7 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ["ui"]: path.join(__dirname, "../../src"),
+            ["styled"]: path.join(__dirname, "../../src"),
           },
         },
       ],

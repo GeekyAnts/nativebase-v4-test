@@ -1,11 +1,6 @@
-// import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable } from "react-native";
-
 import { styled } from "styled";
-// import { Button } from "ui";
-// import { ButtonExpo } from "./button-expo";
-
-const Button = styled(
+import { Pressable } from "react-native";
+export default styled(
   Pressable,
   {
     baseStyle: {
@@ -80,37 +75,3 @@ const Button = styled(
     },
   }
 );
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      {/* <StatusBar style="auto" /> */}
-      {/* <Button
-        onClick={() => {
-          console.log("WORKING");
-        }}
-      /> */}
-      <Button
-        sx={{
-          style: {
-            bg: "$red.800",
-          },
-        }}
-        onPress={() => {
-          console.log("WOORKING BUTTON EXPO");
-        }}
-      >
-        <Text>Hello</Text>
-      </Button>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
