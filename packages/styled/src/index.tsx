@@ -2,6 +2,14 @@ import React from "react";
 import { config } from "./nativebase.config";
 import merge from "lodash.merge";
 import { Platform, StyleSheet } from "react-native";
+import type {
+  ConfigType,
+  IStates,
+  state,
+  StylePropsConfig,
+  SxProps,
+  ThemeType,
+} from "./types";
 
 function cloneObj(obj: Object) {
   return Object.assign({}, obj);
@@ -169,14 +177,17 @@ function resolvedTokenization(props: any, config: any) {
 // }
 
 const resolveSxRecursive = (
-  sx: any,
-  config: any,
-  states: any,
-  colorMode: any,
+  sx: SxProps,
+  config: StylePropsConfig,
+  states: IStates,
+  colorMode: string,
   styleSheetsObj: any,
   resolveDecendantStyles: any,
-  parent?: any
+  parent: any = ""
 ) => {
+  if (typeof sx === "undefined") return;
+  console.log(sx, "#########");
+
   Object.keys(sx).forEach((key) => {
     if (key === "style") {
       let resolvedStyle = resolvedTokenization(sx?.style, config);
@@ -205,9 +216,11 @@ const resolveSxRecursive = (
       }
     } else {
       if (key === "state") {
-        Object.keys(states).forEach((state) => {
+        const stateObject: any = Object.keys(states);
+        stateObject.forEach((state: state) => {
           if (states[state]) {
             resolveSxRecursive(
+              //@ts-ignore
               sx[key][state],
               config,
               states,
@@ -219,8 +232,10 @@ const resolveSxRecursive = (
           }
         });
       } else if (key === "platform") {
+        const platformKey = Platform.OS;
         resolveSxRecursive(
-          sx[key][Platform.OS],
+          //@ts-ignore
+          sx[key][platformKey],
           config,
           states,
           colorMode,
@@ -230,6 +245,7 @@ const resolveSxRecursive = (
         );
       } else if (key === "colorMode") {
         resolveSxRecursive(
+          //@ts-ignore
           sx[key][colorMode],
           config,
           states,
@@ -239,9 +255,13 @@ const resolveSxRecursive = (
           key
         );
       } else if (key === "descendants") {
+        //@ts-ignore
+        const descendantsArray: any = Object.keys(sx[key]);
+        //@ts-ignore
         Object.keys(sx[key]).forEach((descKey) => {
           let decendantStyle = [] as any;
           resolveSxRecursive(
+            //@ts-ignore
             sx[key][descKey],
             config,
             states,
@@ -413,7 +433,11 @@ function resolveContextChildrenStyle(config: any, theme: any, props: any) {
   return resolvedStyle;
 }
 
-export function styled(Component: any, theme: any, compConfig: any) {
+export function styled<P>(
+  Component: React.ComponentType<P>,
+  theme: ThemeType,
+  compConfig: ConfigType
+) {
   let NewComp = (properties: any, ref: any) => {
     let mergedProps = {
       ...theme?.defaultProps,

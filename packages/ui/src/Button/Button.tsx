@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import { useFocusRing } from "@react-native-aria/focus";
 import StyledButton from "./styled/Button";
 import React, { createContext, useState } from "react";
+import type { ButtonProps } from "./types";
 export const ButtonContext = createContext<any>({});
 
 export const useHover = () => {
@@ -52,7 +53,7 @@ export function Button({
   children,
   resolveContextChildrenStyle,
   ...props
-}: any) {
+}: ButtonProps) {
   // ref: any
   const [
     resolveContextChildrenStyleState,
@@ -65,6 +66,8 @@ export function Button({
   // console.log(">>>>", StyledButton);
 
   // setResolveContextChildrenStyleState(resolveContextChildrenStyle);
+
+  console.log(isHovered, props, "isHovered");
 
   return (
     <StyledButton
