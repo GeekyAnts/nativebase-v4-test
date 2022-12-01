@@ -1,8 +1,6 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 
-console.log("hello here");
-import { Button } from "ui";
 // import { ButtonExpo } from "./button-expo";
 
 export default function App() {
@@ -15,11 +13,11 @@ export default function App() {
           console.log("WORKING");
         }}
       /> */}
-      <Button
+      {/* <Button
         onClick={() => {
           console.log("WOORKING BUTTON EXPO");
         }}
-      />
+      /> */}
     </View>
   );
 }
