@@ -22,8 +22,13 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.2.2",
+    "react-dom": "18.1.0",
+    "react-native-web": "^0.18.1",
     "react": "^18.1.0",
     "react-native": "^0.70.3"
+  },
+  "peerDependencies": {
+    "styled": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -38,9 +43,6 @@
       ],
       "typescript"
     ]
-  },
-  "peerDependencies": {
-    "styled": "*"
   },
   "files": [
     "lib/",
