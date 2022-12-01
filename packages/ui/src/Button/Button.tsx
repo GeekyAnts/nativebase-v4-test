@@ -1,13 +1,12 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 // import { useHover, useFocus, useActive } from "react-native-web-hooks";
 import { useFocusRing } from "@react-native-aria/focus";
 import StyledButton from "./styled/Button";
 import React, { createContext, useState } from "react";
-
 export const ButtonContext = createContext<any>({});
 
 export const useHover = () => {
-  const [isHovered, setHovered] = React.useState(false);
+  const [isHovered, setHovered] = useState(false);
   return {
     hoverProps: {
       onHoverIn: () => setHovered(true),
@@ -18,7 +17,7 @@ export const useHover = () => {
 };
 
 export const useFocus = () => {
-  const [isFocused, setFocused] = React.useState(false);
+  const [isFocused, setFocused] = useState(false);
   return {
     focusProps: {
       onFocus: () => setFocused(true),
@@ -29,7 +28,7 @@ export const useFocus = () => {
 };
 
 export const useIsPressed = () => {
-  const [isPressed, setIsPressed] = React.useState(false);
+  const [isPressed, setIsPressed] = useState(false);
   return {
     pressableProps: {
       onPressIn: () => setIsPressed(true),
@@ -49,10 +48,12 @@ function composeEventHandlers<E>(
   };
 }
 
-export function Button(
-  { children, resolveContextChildrenStyle, ...props }: any,
-  ref: any
-) {
+export function Button({
+  children,
+  resolveContextChildrenStyle,
+  ...props
+}: any) {
+  // ref: any
   const [
     resolveContextChildrenStyleState,
     setResolveContextChildrenStyleState,
