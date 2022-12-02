@@ -11,6 +11,8 @@ import type {
   ThemeType,
 } from "./types";
 
+console.log("Hello hello from sabse bahaar");
+
 function cloneObj(obj: Object) {
   return Object.assign({}, obj);
 }
@@ -123,6 +125,8 @@ function variantStateResolver(theme: any, states?: any) {
 }
 
 function applyStylesBasedOnSpecificty(specificityMap: any, stylesheetObj: any) {
+  console.log(stylesheetObj, "styleSheetObj@)#($*%&*$(#");
+
   return specificityMap.map((key: any) => {
     return stylesheetObj[key];
   });
@@ -214,8 +218,10 @@ const resolveSxRecursive = (
     } else {
       if (key === "state") {
         const stateObject: any = Object.keys(states);
+
         stateObject.forEach((state: state) => {
-          if (states[state]) {
+          //@ts-ignore
+          if (states[state] && typeof sx[key][state] !== "undefined") {
             resolveSxRecursive(
               //@ts-ignore
               sx[key][state],
@@ -230,16 +236,19 @@ const resolveSxRecursive = (
         });
       } else if (key === "platform") {
         const platformKey = Platform.OS;
-        resolveSxRecursive(
-          //@ts-ignore
-          sx[key][platformKey],
-          config,
-          states,
-          colorMode,
-          styleSheetsObj,
-          resolveDecendantStyles,
-          key
-        );
+        //@ts-ignore
+        if (typeof sx[key][platformKey] !== "undefined") {
+          resolveSxRecursive(
+            //@ts-ignore
+            sx[key][platformKey],
+            config,
+            states,
+            colorMode,
+            styleSheetsObj,
+            resolveDecendantStyles,
+            key
+          );
+        }
       } else if (key === "colorMode") {
         resolveSxRecursive(
           //@ts-ignore
@@ -352,7 +361,7 @@ function resolveSx(
   // );
   let tokenResolvedProps;
   if (sx) {
-    const { style, ...remainingSx } = sx;
+    const { ...remainingSx } = sx;
 
     resolveSxRecursive(
       remainingSx,
@@ -362,7 +371,7 @@ function resolveSx(
       styleSheetsObj,
       resolvedDecendantStyles
     );
-    tokenResolvedProps = resolvedTokenization(style, config);
+    // tokenResolvedProps = resolvedTokenization(style, config);
   }
   // console.log(styleSheetsObj, resolvedDecendantStyles, resolvedCompThemeStyle);
   // console.log(
@@ -399,19 +408,19 @@ function resolveSx(
     mergedDecendantStylesBasedOnSpecificity[descendant] = {};
     mergedDecendantStylesBasedOnSpecificity[descendant] =
       applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "state"],
+        ["style", "colorMode", "platform", "state"],
         resolvedDecendantStyles[descendant]
       );
   });
   return {
     styleSheetsObj: [
       resolvedCompThemeStyle.style,
+      // tokenResolvedProps,
       applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "state"],
+        ["style", "colorMode", "platform", "state"],
         styleSheetsObj
       ),
-      styleSheetsObj,
-      tokenResolvedProps,
+      // styleSheetsObj,
     ],
     resolveContextChildrenStyle: mergedDecendantStylesBasedOnSpecificity,
   };
@@ -470,8 +479,8 @@ export function styled<P>(
     const newStyle = resolveSx(
       {
         sx,
-        variant,
-        states,
+        // variant,
+        // states,
         colorMode: colorMode ?? "light",
         size,
       },
@@ -479,7 +488,6 @@ export function styled<P>(
     );
 
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
-    console.log(newStyle, ">>>");
 
     return (
       <Component style={styleSheetObj} {...props} ref={ref}>

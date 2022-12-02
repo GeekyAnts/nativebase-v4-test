@@ -5,7 +5,7 @@ export default styled(
   {
     baseStyle: {
       style: {
-        // bg: "$primary.500",
+        bg: "$red.500",
         px: "$4",
         py: "$3",
         // w: 400,}
@@ -20,12 +20,12 @@ export default styled(
     },
     variants: {
       blueBox: {
-        style: { bg: "$primary.500" },
-        // state: {
-        //   hover: { bg: "$primary.600" },
-        //   focus: { borderWidth: "1", borderColor: "$primary.300" },
-        //   active: { bg: "$primary.800" },
-        // },
+        style: { bg: "$secondary.500" },
+        state: {
+          hover: { style: { bg: "$primary.600" } },
+          focus: { style: { borderWidth: 1, borderColor: "$primary.300" } },
+          active: { style: { bg: "$primary.800" } },
+        },
         // p: "$10",
       },
       greenBox: {
