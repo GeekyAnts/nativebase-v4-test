@@ -11,10 +11,8 @@
     "clean": "rm -rf lib"
   },
   "devDependencies": {
-    "@react-native-aria/focus": "^0.2.7",
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
-    "lodash.merge": "^4.6.2",
     "react-native-builder-bob": "^0.20.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "tsconfig": "*",
@@ -25,7 +23,9 @@
     "react-dom": "18.1.0",
     "react-native-web": "^0.18.1",
     "react": "^18.1.0",
-    "react-native": "^0.70.3"
+    "react-native": "^0.70.3",
+    "@react-native-aria/focus": "^0.2.7",
+    "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
     "@native-base/styled-test": "*"
