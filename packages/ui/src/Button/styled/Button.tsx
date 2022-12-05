@@ -10,6 +10,13 @@ export default styled(
         py: "$3",
         // w: 400,}
       },
+      state: {
+        hover: {
+          style: {
+            bg: "$primary.400",
+          },
+        },
+      },
       descendants: {
         _text: {
           style: {

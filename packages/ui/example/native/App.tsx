@@ -11,35 +11,16 @@ export default function App() {
       <Button
         sx={{
           style: {
-            bg: "$red.600",
+            bg: "$secondary.600",
             p: "$3",
           },
-          descendants: {
-            _text: {
-              style: {
-                color: "$primary.500",
-              },
-            },
-          },
-          platform: {
-            ios: {
-              style: {
-                bg: "$red.400",
-              },
-            },
-          },
-          state: {
-            hover: {
-              style: {
-                bg: "$red.800",
-              },
-            },
-            active: {
-              style: {
-                bg: "$secondary.400",
-              },
-            },
-          },
+          // state: {
+          //   hover: {
+          //     style: {
+          //       bg: "$primary.400",
+          //     },
+          //   },
+          // },
         }}
         onPress={() => console.log("Hellllllllo")}
         variant="blueBox"
