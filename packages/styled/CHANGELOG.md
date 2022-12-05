@@ -1,5 +1,11 @@
 # @native-base/styled-test
 
+## 1.0.2
+
+### Patch Changes
+
+- Fix exports
+
 ## 1.0.1
 
 ### Patch Changes
