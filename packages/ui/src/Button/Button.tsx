@@ -1,5 +1,3 @@
-import { Text, View } from "react-native";
-// import { useHover, useFocus, useActive } from "react-native-web-hooks";
 import { useFocusRing } from "@react-native-aria/focus";
 import StyledButton from "./styled/Button";
 import React, { createContext, useState } from "react";
@@ -55,19 +53,10 @@ export function Button({
   ...props
 }: ButtonProps) {
   // ref: any
-  const [
-    resolveContextChildrenStyleState,
-    setResolveContextChildrenStyleState,
-  ] = useState({});
   let { isFocusVisible, focusProps: focusRingProps }: any = useFocusRing();
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
-  // console.log(">>>>", StyledButton);
-
-  // setResolveContextChildrenStyleState(resolveContextChildrenStyle);
-
-  console.log(isHovered, props, "isHovered");
 
   return (
     <StyledButton
@@ -105,7 +94,6 @@ export function Button({
       // ref={ref}
     >
       {({ resolveContextChildrenStyle }: any) => {
-        // setResolveContextChildrenStyleState(resolveContextChildrenStyle);
         return (
           <ButtonContext.Provider
             value={{
