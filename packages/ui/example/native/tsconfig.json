@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@native-base/ui-test": ["../../src/index"],
-      "@native-base/styled-test": ["../../../styled/src/index"]
+      "@native-base/ui-test": ["../../src/index"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
