@@ -6,6 +6,7 @@
   "module": "lib/module/index",
   "react-native": "src/index",
   "source": "src/index",
+  "typings": "lib/typescript/src/index.d.ts",
   "scripts": {
     "dev": "bob build",
     "clean": "rm -rf lib"
@@ -25,7 +26,8 @@
     "react": "^18.1.0",
     "react-native": "^0.70.3",
     "@react-native-aria/focus": "^0.2.7",
-    "lodash.merge": "^4.6.2"
+    "lodash.merge": "^4.6.2",
+    "@native-base/styled-test": "*"
   },
   "peerDependencies": {
     "@native-base/styled-test": "*"

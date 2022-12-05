@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/src/index.d.ts",
+  "typings": "lib/typescript/src/index.d.ts",
   "module": "lib/module/index",
   "react-native": "src/index",
   "source": "src/index",
@@ -22,8 +23,7 @@
   },
   "dependencies": {
     "react": "^18.1.0",
-    "react-native": "^0.70.3",
-    "@native-base/ui-test": "*"
+    "react-native": "^0.70.3"
   },
   "react-native-builder-bob": {
     "source": "src",

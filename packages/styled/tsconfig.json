@@ -1,11 +1,6 @@
 {
-  "include": [
-    "./src"
-  ],
-  "exclude": [
-    "node_modules",
-    "example"
-  ],
+  "include": ["./src"],
+  "exclude": ["node_modules", "example"],
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
@@ -17,10 +12,7 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
