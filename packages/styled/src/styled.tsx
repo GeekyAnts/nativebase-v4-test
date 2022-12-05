@@ -11,8 +11,6 @@ import type {
   ThemeType,
 } from "./types";
 
-console.log("Hello hello from sabse bahaar");
-
 function cloneObj(obj: Object) {
   return Object.assign({}, obj);
 }
@@ -125,8 +123,6 @@ function variantStateResolver(theme: any, states?: any) {
 }
 
 function applyStylesBasedOnSpecificty(specificityMap: any, stylesheetObj: any) {
-  console.log(stylesheetObj, "styleSheetObj@)#($*%&*$(#");
-
   return specificityMap.map((key: any) => {
     return stylesheetObj[key];
   });
@@ -218,7 +214,6 @@ const resolveSxRecursive = (
     } else {
       if (key === "state") {
         const stateObject: any = Object.keys(states);
-
         stateObject.forEach((state: state) => {
           //@ts-ignore
           if (states[state] && typeof sx[key][state] !== "undefined") {
@@ -362,7 +357,6 @@ function resolveSx(
   let tokenResolvedProps;
   if (sx) {
     const { ...remainingSx } = sx;
-
     resolveSxRecursive(
       remainingSx,
       config,
@@ -452,6 +446,7 @@ export function styled<P>(
 
     let { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
+
     // console.log(props);
 
     // let [styledUtilityProps, nonStyledUtilityProps] = resolveStyledUtilityProps(
@@ -479,8 +474,8 @@ export function styled<P>(
     const newStyle = resolveSx(
       {
         sx,
-        // variant,
-        // states,
+        variant,
+        states,
         colorMode: colorMode ?? "light",
         size,
       },
