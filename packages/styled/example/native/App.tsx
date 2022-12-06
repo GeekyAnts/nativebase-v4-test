@@ -1,25 +1,62 @@
 // import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 
-console.log("hello here");
-import { Button } from "ui";
-// import { ButtonExpo } from "./button-expo";
+import { styled } from "@native-base/styled-test";
+
+const Box = styled(
+  View,
+  {
+    baseStyle: {
+      style: {
+        bg: "$red.500",
+        p: "$3",
+      },
+      state: {
+        hover: {
+          style: {
+            bg: "$red.300",
+          },
+        },
+      },
+    },
+    variants: {
+      greenBox: {
+        style: {
+          bg: "$secondary.500",
+        },
+        state: {
+          hover: {
+            style: {
+              bg: "$primary.600",
+            },
+          },
+        },
+      },
+    },
+  },
+  {}
+);
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      {/* <StatusBar style="auto" /> */}
-      {/* <Button
-        onClick={() => {
-          console.log("WORKING");
-        }}
-      /> */}
-      <Button
-        onClick={() => {
-          console.log("WOORKING BUTTON EXPO");
-        }}
-      />
+      <Box
+      // variant="greenBox"
+      // states={{
+      //   hover: false,
+      // }}
+      // sx={{
+      //   state: {
+      //     hover: {
+      //       style: {
+      //         bg: "$red.500",
+      //       },
+      //     },
+      //   },
+      // }}
+      >
+        Hello Box
+      </Box>
     </View>
   );
 }

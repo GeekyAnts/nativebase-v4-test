@@ -1,14 +1,12 @@
 {
-  "include": [
-    "./src"
-  ],
-  "exclude": [
-    "node_modules",
-    "example"
-  ],
+  "include": ["./src"],
+  "exclude": ["node_modules", "example"],
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
+    "paths": {
+      "@native-base/styled-test": ["../styled/src/index"]
+    },
     "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
@@ -17,10 +15,7 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
