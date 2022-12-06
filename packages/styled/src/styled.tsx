@@ -493,6 +493,7 @@ export function styled<P>(
     );
 
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
+    console.log(styleSheetObj, props);
 
     return (
       <Component style={styleSheetObj} {...props} ref={ref}>
