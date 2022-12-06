@@ -2,26 +2,31 @@
 import { StyleSheet, Text, View } from "react-native";
 
 // console.log("hello here");
-// import { Button } from "ui";
+import { Button, ButtonText } from "@native-base/ui-test";
 // import { ButtonExpo } from "./button-expo";
-import { H1Custom } from "ui";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <H1Custom text="Hello there form expo"></H1Custom>
-      {/* <StatusBar style="auto" /> */}
-      {/* <Button
-        onClick={() => {
-          console.log("WORKING");
+      <Button
+        sx={{
+          style: {
+            bg: "$secondary.600",
+            p: "$3",
+          },
+          // state: {
+          //   hover: {
+          //     style: {
+          //       bg: "$primary.400",
+          //     },
+          //   },
+          // },
         }}
-      /> */}
-      {/* <Button
-        onClick={() => {
-          console.log("WOORKING BUTTON EXPO");
-        }}
-      /> */}
+        onPress={() => console.log("Hellllllllo")}
+        variant="blueBox"
+      >
+        <ButtonText>Click me</ButtonText>
+      </Button>
     </View>
   );
 }

@@ -27,7 +27,7 @@
     "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "ui": "*"
+    "@native-base/ui-test": "*"
   },
   "private": true
 }

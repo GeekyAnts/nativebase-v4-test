@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "styled": [
+      "@native-base/styled-test": [
         "../../src"
       ]
     },

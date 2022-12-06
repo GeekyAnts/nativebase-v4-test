@@ -2,16 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "ui": [
-        "../../src"
-      ]
+      "@native-base/ui-test": ["../../src/index"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "allowJs": true,
     "moduleResolution": "node",
     "noEmit": true,
