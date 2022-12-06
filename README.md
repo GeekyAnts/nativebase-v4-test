@@ -4,7 +4,7 @@ This is an official starter Turborepo.
 
 ## What's inside?
 
-This Turborepo includes the following packages/apps:
+This Turborepo includes the following packages:
 
 ### Apps and Packages
 
