@@ -218,16 +218,15 @@ const resolveSxRecursive = (
       }
     } else {
       if (key === "state") {
-        if (typeof states !== "undefined") {
+        if (states) {
           const stateObject: any = Object.keys(states);
-          console.log(key, stateObject, "stateObject###");
 
           stateObject.forEach((state: state) => {
             //@ts-ignore
             console.log(state, sx[key][state], "IState");
 
             //@ts-ignore
-            if (states[state] && typeof sx[key][state] !== "undefined") {
+            if (states[state] && sx[key][state]) {
               resolveSxRecursive(
                 //@ts-ignore
                 sx[key][state],
@@ -244,7 +243,7 @@ const resolveSxRecursive = (
       } else if (key === "platform") {
         const platformKey = Platform.OS;
         //@ts-ignore
-        if (typeof sx[key][platformKey] !== "undefined") {
+        if (sx[key][platformKey]) {
           resolveSxRecursive(
             //@ts-ignore
             sx[key][platformKey],
@@ -258,7 +257,7 @@ const resolveSxRecursive = (
         }
       } else if (key === "colorMode") {
         //@ts-ignore
-        if (typeof sx[key][colorMode] !== "undefined") {
+        if (sx[key][colorMode]) {
           resolveSxRecursive(
             //@ts-ignore
             sx[key][colorMode],

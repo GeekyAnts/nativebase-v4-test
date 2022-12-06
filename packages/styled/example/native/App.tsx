@@ -3,54 +3,60 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 
 import { styled } from "@native-base/styled-test";
 
-const TestComponent = styled(
+const Box = styled(
   View,
   {
     baseStyle: {
       style: {
-        backgroundColor: "red",
-        padding: "$10",
+        bg: "$red.500",
+        p: "$3",
       },
       state: {
         hover: {
           style: {
-            backgroundColor: "$primary.600",
+            bg: "$red.300",
           },
         },
       },
     },
     variants: {
-      primary: {
+      greenBox: {
         style: {
-          backgroundColor: "$primary.500",
+          bg: "$secondary.500",
         },
         state: {
           hover: {
             style: {
-              p: "$20",
-              backgroundColor: "$secondary.600",
+              bg: "$primary.600",
             },
           },
         },
       },
     },
   },
-  {
-    // states: ["hover"]
-  }
+  {}
 );
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <TestComponent
-        // variant="primary"
-        states={{
-          hover: false,
-        }}
+      <Box
+      // variant="greenBox"
+      // states={{
+      //   hover: false,
+      // }}
+      // sx={{
+      //   state: {
+      //     hover: {
+      //       style: {
+      //         bg: "$red.500",
+      //       },
+      //     },
+      //   },
+      // }}
       >
-        Hello world
-      </TestComponent>
+        Hello Box
+      </Box>
     </View>
   );
 }
