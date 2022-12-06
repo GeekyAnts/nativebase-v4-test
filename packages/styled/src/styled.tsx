@@ -80,7 +80,8 @@ function resolveTokensFromConfig(config: any, props: any) {
       }
     } else {
       // TODO: Add support for prop value that are not string/number.. From NB core uSSPR
-      newProps[prop] = typeof value === "number" ? value : parseInt(value);
+      // newProps[prop] = typeof value === "number" ? value : parseInt(value);
+      newProps[prop] = value;
     }
   });
 
@@ -122,9 +123,13 @@ function variantStateResolver(theme: any, states?: any) {
   return resolvedTheme;
 }
 
-function applyStylesBasedOnSpecificty(specificityMap: any, stylesheetObj: any) {
+function applyStylesBasedOnSpecificty(
+  specificityMap: any,
+  stylesheetObj: any,
+  resolvedCompThemeStyle: any
+) {
   return specificityMap.map((key: any) => {
-    return stylesheetObj[key];
+    return [resolvedCompThemeStyle[key], stylesheetObj[key]];
   });
 }
 
@@ -177,7 +182,7 @@ function resolvedTokenization(props: any, config: any) {
 // }
 
 const resolveSxRecursive = (
-  sx: SxProps,
+  sx: SxProps = {},
   config: StylePropsConfig,
   states: IStates,
   colorMode: string,
@@ -213,22 +218,29 @@ const resolveSxRecursive = (
       }
     } else {
       if (key === "state") {
-        const stateObject: any = Object.keys(states);
-        stateObject.forEach((state: state) => {
-          //@ts-ignore
-          if (states[state] && typeof sx[key][state] !== "undefined") {
-            resolveSxRecursive(
-              //@ts-ignore
-              sx[key][state],
-              config,
-              states,
-              colorMode,
-              styleSheetsObj,
-              resolveDecendantStyles,
-              key
-            );
-          }
-        });
+        if (typeof states !== "undefined") {
+          const stateObject: any = Object.keys(states);
+          console.log(key, stateObject, "stateObject###");
+
+          stateObject.forEach((state: state) => {
+            //@ts-ignore
+            console.log(state, sx[key][state], "IState");
+
+            //@ts-ignore
+            if (states[state] && typeof sx[key][state] !== "undefined") {
+              resolveSxRecursive(
+                //@ts-ignore
+                sx[key][state],
+                config,
+                states,
+                colorMode,
+                styleSheetsObj,
+                resolveDecendantStyles,
+                key
+              );
+            }
+          });
+        }
       } else if (key === "platform") {
         const platformKey = Platform.OS;
         //@ts-ignore
@@ -245,16 +257,19 @@ const resolveSxRecursive = (
           );
         }
       } else if (key === "colorMode") {
-        resolveSxRecursive(
-          //@ts-ignore
-          sx[key][colorMode],
-          config,
-          states,
-          colorMode,
-          styleSheetsObj,
-          resolveDecendantStyles,
-          key
-        );
+        //@ts-ignore
+        if (typeof sx[key][colorMode] !== "undefined") {
+          resolveSxRecursive(
+            //@ts-ignore
+            sx[key][colorMode],
+            config,
+            states,
+            colorMode,
+            styleSheetsObj,
+            resolveDecendantStyles,
+            key
+          );
+        }
       } else if (key === "descendants") {
         //@ts-ignore
         const descendantsArray: any = Object.keys(sx[key]);
@@ -307,7 +322,6 @@ function resolveSx(
   compTheme: any
 ) {
   let styleSheetsObj = [] as any;
-  // console.log(sx);
 
   let resolvedDecendantStyles = {} as any;
   let resolvedCompThemeStyle = [] as any;
@@ -403,19 +417,16 @@ function resolveSx(
     mergedDecendantStylesBasedOnSpecificity[descendant] =
       applyStylesBasedOnSpecificty(
         ["style", "colorMode", "platform", "state"],
-        resolvedDecendantStyles[descendant]
+        resolvedDecendantStyles[descendant],
+        {}
       );
   });
   return {
-    styleSheetsObj: [
-      resolvedCompThemeStyle.style,
-      // tokenResolvedProps,
-      applyStylesBasedOnSpecificty(
-        ["style", "colorMode", "platform", "state"],
-        styleSheetsObj
-      ),
-      // styleSheetsObj,
-    ],
+    styleSheetsObj: applyStylesBasedOnSpecificty(
+      ["style", "colorMode", "platform", "state"],
+      styleSheetsObj,
+      resolvedCompThemeStyle
+    ),
     resolveContextChildrenStyle: mergedDecendantStylesBasedOnSpecificity,
   };
 }
