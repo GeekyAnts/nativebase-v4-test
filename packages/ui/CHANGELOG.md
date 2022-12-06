@@ -1,5 +1,13 @@
 # @native-base/ui-test
 
+## 1.0.6
+
+### Patch Changes
+
+- Fixed null check
+- Updated dependencies
+  - @native-base/styled-test@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes
