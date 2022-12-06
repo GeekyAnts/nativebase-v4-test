@@ -1,5 +1,17 @@
 # @native-base/styled-test
 
+## 1.0.6
+
+### Patch Changes
+
+- Fixed null check
+
+## 1.0.5
+
+### Patch Changes
+
+- Fixed sx props resolution
+
 ## 1.0.3
 
 ### Patch Changes

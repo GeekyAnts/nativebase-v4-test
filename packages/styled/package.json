@@ -1,6 +1,6 @@
 {
   "name": "@native-base/styled-test",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -16,21 +16,21 @@
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "react-native-builder-bob": "^0.20.1",
-    "tsconfig": "*",
-    "typescript": "^4.7.4",
     "react": "^18.1.0",
-    "react-native": "^0.70.3",
     "react-dom": "^18.1.0",
-    "react-native-web": "^0.18.1"
+    "react-native": "^0.70.3",
+    "react-native-builder-bob": "^0.20.1",
+    "react-native-web": "^0.18.1",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
     "react-dom": "*",
+    "react-native": "*",
     "react-native-web": "*"
   },
   "react-native-builder-bob": {
