@@ -1,12 +1,12 @@
 {
-  "include": ["./src"],
+  "include": ["./"],
   "exclude": ["node_modules", "example"],
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
-    // "paths": {
-    //   "@native-base/styled-test": ["../styled/src/index"]
-    // },
+    "paths": {
+      "@native-base/ui-test": ["../ui/src/index"]
+    },
     "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,
