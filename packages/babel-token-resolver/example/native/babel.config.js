@@ -5,7 +5,7 @@ module.exports = function (api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: [
-      myBabel,
+      process.env.NODE_ENV === "production" ? myBabel : {},
       [
         "module-resolver",
         {
@@ -18,6 +18,7 @@ module.exports = function (api) {
           },
         },
       ],
+      "transform-remove-console",
     ],
   };
 };
