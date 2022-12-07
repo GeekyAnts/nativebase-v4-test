@@ -1,9 +1,9 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-import { styled } from "@native-base/styled-test";
+import { styled as xyz } from "@native-base/styled-test";
 
-const Box = styled(
+const Box = xyz(
   View,
   {
     baseStyle: {
@@ -22,12 +22,12 @@ const Box = styled(
     variants: {
       greenBox: {
         style: {
-          bg: "$secondary.500",
+          bg: "$red.500",
         },
         state: {
           hover: {
             style: {
-              bg: "$primary.600",
+              bg: "$red.100",
             },
           },
         },
