@@ -19,35 +19,49 @@ const config = {
     property: "paddingVertical",
     scale: "space",
   },
-} as any;
+};
 
 const tokens = {
   color: {
     red: {
-      "100": "#00000",
-      "200": "#23333",
-      "500": "#6ffcvd",
+      100: "#00000",
+      200: "#23333",
+      500: "#6ffd",
     },
   },
   space: {
-    "1": 4,
-    "2": 8,
-    "3": 12,
-    "4": 16,
-    "5": 20,
+    1: 4,
+    2: 8,
+    3: 12,
+    4: 16,
+    5: 20,
   },
-} as any;
+};
 
-module.exports = function (babel: any) {
+module.exports = function (babel) {
   const { types: t } = babel;
   return {
     visitor: {
-      Program(progPath: any) {
+      Program(progPath) {
+        let isStyledImportedFromNativeBase = false;
+        let styledLocalCalleeName = "";
         progPath.traverse({
-          CallExpression(callExpPath: any) {
-            if (callExpPath.node.callee.name === "styled") {
+          ImportSpecifier(importSpecPath) {
+            if (
+              importSpecPath.node.imported.name === "styled" &&
+              importSpecPath.parent.source.value === "@native-base/styled-test"
+            ) {
+              isStyledImportedFromNativeBase = true;
+              styledLocalCalleeName = importSpecPath.node.local.name;
+            }
+          },
+          CallExpression(callExpPath) {
+            if (
+              callExpPath.node.callee.name === styledLocalCalleeName &&
+              isStyledImportedFromNativeBase
+            ) {
               callExpPath.traverse({
-                StringLiteral(path: any) {
+                StringLiteral(path) {
                   if (path.node.value.startsWith("$")) {
                     const parentKey = path.parent.key.name;
                     if (config[parentKey] && config[parentKey]["scale"]) {
@@ -55,9 +69,11 @@ module.exports = function (babel: any) {
                       const token = path.node.value.substring(1);
                       if (token.includes(".")) {
                         const [a, b] = token.split(".");
-                        path.node.value = tokens[scaleValue][a][b];
+                        path.node.value =
+                          tokens[scaleValue]?.[a]?.[b] ?? path.node.value;
                       } else {
-                        path.node.value = tokens[scaleValue][token];
+                        path.node.value =
+                          tokens[scaleValue]?.[token] ?? path.node.value;
                       }
                     }
                   }
