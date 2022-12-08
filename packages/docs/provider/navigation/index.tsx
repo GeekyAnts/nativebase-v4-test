@@ -13,10 +13,11 @@ export function NavigationProvider({
         () => ({
           prefixes: [Linking.createURL("/")],
           config: {
-            initialRouteName: "button",
+            initialRouteName: "landing",
             screens: {
-              button: "",
+              landing: "",
               button2: "button2",
+              heading: "heading",
             },
           },
         }),
