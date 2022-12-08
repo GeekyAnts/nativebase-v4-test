@@ -5,7 +5,8 @@ module.exports = function (api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: [
-      process.env.NODE_ENV === "production" ? myBabel : {},
+      // process.env.NODE_ENV === "production" ? myBabel : {},
+      myBabel,
       [
         "module-resolver",
         {
