@@ -1,6 +1,5 @@
 import React from "react";
 import { config } from "./nativebase.config";
-import merge from "lodash.merge";
 import { Platform, StyleSheet } from "react-native";
 import type {
   ConfigType,
@@ -10,10 +9,6 @@ import type {
   SxProps,
   ThemeType,
 } from "./types";
-
-function cloneObj(obj: Object) {
-  return Object.assign({}, obj);
-}
 
 function resolveAliasesFromConfig(config: any, props: any) {
   let aliasResolvedProps: any = {};
@@ -25,44 +20,6 @@ function resolveAliasesFromConfig(config: any, props: any) {
     }
   });
   return aliasResolvedProps;
-}
-
-function resolveStyledUtilityProps(config: any, props: any) {
-  let styledUtilityProps: any = {};
-  let restNonUtilityProps: any = {};
-  Object.keys(props).map((key) => {
-    if (config?.aliases?.[key]) {
-      styledUtilityProps[key] = props[key];
-    } else {
-      restNonUtilityProps[key] = props[key];
-    }
-  });
-  return [styledUtilityProps, restNonUtilityProps];
-}
-
-function resolveSize(size: any, props: any, componentTheme: any) {
-  let resolvedSize: any = { ...props };
-
-  if (typeof size === "string") {
-    resolvedSize = { ...resolvedSize, ...componentTheme?.size?.[size] };
-  }
-  delete resolvedSize["size"];
-  return resolvedSize;
-}
-
-function resolveColorscheme(props: any) {
-  if (props.colorScheme) {
-    let colorScheme = props.colorScheme;
-    delete props.colorScheme;
-    Object.keys(props).map((key) => {
-      if (typeof props[key] === "string") {
-        props[key] = props[key].replace("$colorscheme", `$${colorScheme}`);
-      }
-    });
-
-    return { ...props };
-  }
-  return props;
 }
 
 function resolveTokensFromConfig(config: any, props: any) {
@@ -87,41 +44,6 @@ function resolveTokensFromConfig(config: any, props: any) {
 
   return newProps;
 }
-function variantStateResolver(theme: any, states?: any) {
-  const { variants } = theme;
-  const resolvedTheme = merge({}, theme);
-  if (variants) {
-    Object.keys(variants).map((variant) => {
-      let resolvedVariant: any = {};
-      resolvedVariant[variant] = {
-        ...variants[variant].baseStyle,
-      };
-      if (states) {
-        if (states.hover) {
-          resolvedVariant[variant] = {
-            ...resolvedVariant[variant],
-            ...variants[variant].state?.hover,
-          };
-        }
-        if (states.focus) {
-          resolvedVariant[variant] = {
-            ...resolvedVariant[variant],
-            ...variants[variant].state?.focus,
-          };
-        }
-        if (states.active) {
-          resolvedVariant[variant] = {
-            ...resolvedVariant[variant],
-            ...variants[variant].state?.active,
-          };
-        }
-      }
-      resolvedTheme.variants[variant] = resolvedVariant[variant];
-    });
-  }
-
-  return resolvedTheme;
-}
 
 function applyStylesBasedOnSpecificty(
   specificityMap: any,
@@ -133,53 +55,11 @@ function applyStylesBasedOnSpecificty(
   });
 }
 
-function filterUndefindedProps(props: any) {
-  let newProps = {} as any;
-  Object.keys(props).map((key) => {
-    if (props[key] !== undefined) {
-      newProps[key] = props[key];
-    }
-  });
-  return newProps;
-}
-
 function resolvedTokenization(props: any, config: any) {
   let aliasedResolvedProps = resolveAliasesFromConfig(config, props);
   let newProps = resolveTokensFromConfig(config, aliasedResolvedProps);
-
-  // console.log(newProps);
-
   return newProps;
 }
-
-// function resolveStateStyle(sxState: any, states: any) {
-//   let resolvedStateStyle = [] as any;
-
-//   return resolvedStateStyle;
-// }
-
-// function resolveDecendantStyles(
-//   descendants: any,
-//   config: any,
-//   states: any,
-//   colorMode: any
-// ) {
-//   let resolvedDecendantStyles = {} as any;
-//   if (descendants) {
-//     Object.keys(descendants).forEach((key) => {
-//       let decendantStyle = [] as any;
-//       resolveSxRecursive(
-//         descendants[key],
-//         config,
-//         states,
-//         colorMode,
-//         decendantStyle,resolveDecendantStyles
-//       );
-//       resolvedDecendantStyles[key] = decendantStyle;
-//     });
-//   }
-//   return resolvedDecendantStyles;
-// }
 
 const resolveSxRecursive = (
   sx: SxProps = {},
@@ -204,16 +84,7 @@ const resolveSxRecursive = (
         if (styleSheetsObj?.style) {
           styleSheetsObj.style.push(resolvedStyle);
         } else {
-          // console.log(resolvedStyle, "resolvedStyle");
-          // console.log(
-          //   "resolvedStyle1>>>>> UPPPP",
-          //   resolvedStyle,
-          //   "",
-          //   styleSheetsObj
-          // );
           styleSheetsObj.style = [resolvedStyle];
-          // console.log("resolvedStyle1>>>>>", resolvedStyle, "", styleSheetsObj);
-          // console.log(resolvedStyle, "resolvedStyle", styleSheetsObj);
         }
       }
     } else {
@@ -344,12 +215,6 @@ function resolveSx(
       resolvedDecendantStyles
     );
   }
-  // console.log(
-  //   "style>>",
-  //   // styleSheetsObj,
-  //   resolvedCompThemeStyle,
-  //   resolvedDecendantStyles
-  // );
   // Resolve size:
   if (size) {
     resolveSxRecursive(
@@ -361,12 +226,6 @@ function resolveSx(
       resolvedDecendantStyles
     );
   }
-  // let resolvedDecendantStyles = resolveDecendantStyles(
-  //   descendants,
-  //   config,
-  //   states,
-  //   colorMode
-  // );
   let tokenResolvedProps;
   if (sx) {
     const { ...remainingSx } = sx;
@@ -378,36 +237,7 @@ function resolveSx(
       styleSheetsObj,
       resolvedDecendantStyles
     );
-    // tokenResolvedProps = resolvedTokenization(style, config);
   }
-  // console.log(styleSheetsObj, resolvedDecendantStyles, resolvedCompThemeStyle);
-  // console.log(
-  //   applyStylesBasedOnSpecificty(
-  //     ["style", "colorMode", "state"],
-  //     resolvedDecendantStyles["_text"]
-  //   )
-  // );
-  // const states = {
-  //   hover: filteredProps.hover,
-  //   focus: filteredProps.focus,
-  //   active: filteredProps.active,
-  // };
-  // let stateResolvedTheme = baseStateResolver(compTheme, states);
-  // let theme = variantStateResolver(stateResolvedTheme, states);
-
-  // let variantResolvedProps = mergePropsBasedOnSpecificity(
-  //   filteredProps,
-  //   theme.baseStyle,
-  //   theme.variants,
-  //   theme.defaultProps,
-  //   sx
-  // );
-  // let resolvedSize = resolveSize(
-  //   variantResolvedProps?.["size"],
-  //   variantResolvedProps,
-  //   theme
-  // );
-  // let colorSchemeResolvedProps = resolveColorscheme(resolvedSize);
 
   let mergedDecendantStylesBasedOnSpecificity = {} as any;
 
@@ -457,30 +287,6 @@ export function styled<P>(
     let { children, sx, variant, size, states, colorMode, ...props } =
       mergedProps;
 
-    // console.log(props);
-
-    // let [styledUtilityProps, nonStyledUtilityProps] = resolveStyledUtilityProps(
-    //   config,
-    //   props
-    // );
-
-    // let resolvedContextChildrenStyleValue = resolveContextChildrenStyle(
-    //   compConfig,
-    //   theme,
-    //   {
-    //     ...props,
-    //     ...theme.defaultProps,
-    //     sx,
-    //     // variant,
-    //     // colorScheme,
-    //     // hover,
-    //     // focus,
-    //     // active,
-    //   }
-    // );
-    // let consumeStyle = fetchConsumerStyle(compConfig);
-    // console.log({ ...theme.defaultProps });
-
     const newStyle = resolveSx(
       {
         sx,
@@ -493,7 +299,6 @@ export function styled<P>(
     );
 
     const styleSheetObj = StyleSheet.create(newStyle.styleSheetsObj);
-    console.log(styleSheetObj, props);
 
     return (
       <Component style={styleSheetObj} {...props} ref={ref}>

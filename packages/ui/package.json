@@ -9,30 +9,32 @@
   "typings": "lib/typescript/index.d.ts",
   "scripts": {
     "build": "bob build",
-    "clean": "rm -rf lib"
+    "clean": "rm -rf lib",
+    "dev:web": "cd example/native && yarn web --clear"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
     "@types/react-native": "^0.69.15",
-    "react-native-builder-bob": "^0.20.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "tsconfig": "*",
-    "typescript": "^4.7.4",
-    "react-dom": "18.1.0",
-    "react-native-web": "^0.18.1",
     "react": "^18.1.0",
-    "react-native": "^0.70.3"
+    "react-dom": "18.1.0",
+    "react-native": "^0.70.3",
+    "react-native-builder-bob": "^0.20.1",
+    "react-native-web": "^0.18.1",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.2.2",
+    "@native-base/styled-test": "*",
     "@react-native-aria/focus": "^0.2.7",
-    "lodash.merge": "^4.6.2",
-    "@native-base/styled-test": "*"
+    "lodash.merge": "^4.6.2"
   },
   "peerDependencies": {
-    "react-dom": "*",
-    "react-native-web": "*",
     "react": "*",
-    "react-native": "*"
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
   },
   "react-native-builder-bob": {
     "source": "src",

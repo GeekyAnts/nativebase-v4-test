@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 // console.log("hello here");
-import { Button, ButtonText } from "@native-base/ui-test";
+import { Button, ButtonText, Heading } from "@native-base/ui-test";
 // import { ButtonExpo } from "./button-expo";
 
 export default function App() {
@@ -27,6 +27,7 @@ export default function App() {
       >
         <ButtonText>Click me</ButtonText>
       </Button>
+      <Heading>Heading</Heading>
     </View>
   );
 }

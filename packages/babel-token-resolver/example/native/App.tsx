@@ -8,7 +8,7 @@ const Box = xyz(
   {
     baseStyle: {
       style: {
-        bg: "$red.500",
+        bg: "$primary.500",
         p: "$3",
       },
       state: {

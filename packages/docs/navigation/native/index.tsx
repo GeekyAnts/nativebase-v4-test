@@ -1,11 +1,13 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { DocsButton } from "../../docs/button";
+import { DocsLanding } from "../../docs/landing";
 import { DocsButton2 } from "../../docs/button/button";
+import { DocsHeading } from "../../docs/heading";
 
 const Stack = createNativeStackNavigator<{
-  button: any;
+  landing: any;
   button2: any;
+  heading: any;
 }>();
 
 export function NativeNavigation() {
@@ -16,10 +18,10 @@ export function NativeNavigation() {
       }}
     >
       <Stack.Screen
-        name="button"
-        component={DocsButton}
+        name="landing"
+        component={DocsLanding}
         options={{
-          title: "Button",
+          title: "Landing",
         }}
       />
       <Stack.Screen
@@ -27,6 +29,13 @@ export function NativeNavigation() {
         component={DocsButton2}
         options={{
           title: "Button2",
+        }}
+      />
+      <Stack.Screen
+        name="heading"
+        component={DocsHeading}
+        options={{
+          title: "Heading",
         }}
       />
     </Stack.Navigator>

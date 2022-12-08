@@ -1,42 +1,66 @@
-const config = {
-  bg: {
-    property: "backgroundColor",
-    scale: "color",
-  },
-  color: {
-    property: "color",
-    scale: "color",
-  },
-  p: {
-    property: "padding",
-    scale: "space",
-  },
-  px: {
-    property: "paddingHorizontal",
-    scale: "space",
-  },
-  py: {
-    property: "paddingVertical",
-    scale: "space",
-  },
-};
+const fs = require("fs");
+const path = require("path");
+const babel = require("@babel/core");
+const traverse = require("@babel/traverse");
+const generate = require("@babel/generator").default;
+const t = require("@babel/types");
 
-const tokens = {
-  color: {
-    red: {
-      100: "#00000",
-      200: "#23333",
-      500: "#6ffd",
-    },
+function getNativeBaseConfig() {
+  const isNativeBaseJSExist = fs.existsSync(
+    path.join(process.cwd(), "./nativebase.config.js")
+  );
+  const isNativeBaseTSExist = fs.existsSync(
+    path.join(process.cwd(), "./nativebase.config.ts")
+  );
+
+  if (isNativeBaseTSExist) {
+    return fs.readFileSync(
+      path.join(process.cwd(), "./nativebase.config.ts"),
+      "utf8"
+    );
+  }
+
+  if (isNativeBaseJSExist) {
+    return fs.readFileSync(
+      path.join(process.cwd(), "./nativebase.config.js"),
+      "utf8"
+    );
+  }
+}
+
+const nativeBaseConfig = getNativeBaseConfig();
+
+let config = {};
+const ast = babel.parse(nativeBaseConfig);
+babel.traverse(ast, {
+  Program(path) {
+    let nodePath;
+    path.traverse({
+      ExpressionStatement(path) {
+        path.traverse({
+          AssignmentExpression(path) {
+            if (
+              path.node.left.object.name === "module" &&
+              path.node.left.property.name === "exports"
+            ) {
+              nodePath = path.node.right;
+            }
+          },
+        });
+      },
+      ObjectProperty(path) {
+        if (path.node.key.name) {
+          path.node.key.name = `"${path.node.key.name}"`;
+        }
+        if (t.isNumericLiteral(path.node.key)) {
+          path.node.key.value = `"${path.node.key.value}"`;
+        }
+      },
+    });
+    config = JSON.parse(generate(nodePath).code);
   },
-  space: {
-    1: 4,
-    2: 8,
-    3: 12,
-    4: 16,
-    5: 20,
-  },
-};
+});
+// console.log(ast, "####");
 
 module.exports = function (babel) {
   const { types: t } = babel;
@@ -64,25 +88,30 @@ module.exports = function (babel) {
                 StringLiteral(path) {
                   if (path.node.value.startsWith("$")) {
                     const parentKey = path.parent.key.name;
-                    if (config[parentKey] && config[parentKey]["scale"]) {
-                      const scaleValue = config[parentKey]["scale"];
+                    if (
+                      config["aliases"][parentKey] &&
+                      config["aliases"][parentKey]["scale"]
+                    ) {
+                      const scaleValue = config["aliases"][parentKey]["scale"];
                       const token = path.node.value.substring(1);
                       if (token.includes(".")) {
                         const [a, b] = token.split(".");
                         path.node.value =
-                          tokens[scaleValue]?.[a]?.[b] ?? path.node.value;
+                          config["tokens"][scaleValue]?.[a]?.[b] ??
+                          path.node.value;
                       } else {
                         path.node.value =
-                          tokens[scaleValue]?.[token] ?? path.node.value;
+                          config["tokens"][scaleValue]?.[token] ??
+                          path.node.value;
                       }
                     }
                   }
                   if (
-                    config[path.parent.key.name] &&
-                    config[path.parent.key.name]["property"]
+                    config["aliases"][path.parent.key.name] &&
+                    config["aliases"][path.parent.key.name]["property"]
                   ) {
                     path.parent.key.name =
-                      config[path.parent.key.name]["property"];
+                      config["aliases"][path.parent.key.name]["property"];
                   }
                 },
               });
