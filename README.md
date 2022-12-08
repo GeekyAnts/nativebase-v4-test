@@ -2,7 +2,7 @@
 
 This is an official starter Turborepo.
 
-## What's inside this?
+## What's inside this -?
 
 This Turborepo includes the following packages:
 
