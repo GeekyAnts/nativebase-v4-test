@@ -1,6 +1,6 @@
-import { DocsButton } from "@native-base/docs-test/docs/button";
+import { DocsLanding } from "@native-base/docs-test/docs/landing";
 
-export default DocsButton;
+export default DocsLanding;
 
 // import React from "react";
 
