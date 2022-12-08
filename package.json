@@ -10,7 +10,7 @@
     "test": "echo 1",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
-    "release": "echo 2"
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.2",

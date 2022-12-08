@@ -1,5 +1,11 @@
 # @native-base/ui-test
 
+## 1.0.7
+
+### Patch Changes
+
+- GitHub Actions Test
+
 ## 1.0.6
 
 ### Patch Changes
