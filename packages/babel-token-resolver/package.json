@@ -1,6 +1,6 @@
 {
   "name": "@native-base/babel-token-resolver",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "react-native": "src/index",
