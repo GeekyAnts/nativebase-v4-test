@@ -74,6 +74,6 @@ jobs:
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: "C03ELFH6T1U"
           # For posting a simple plain text message
-          slack-message: "Hello"
+          slack-message: ${{ steps.format_lighthouse_score.outputs.comment }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
