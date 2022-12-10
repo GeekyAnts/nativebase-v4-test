@@ -1,6 +1,6 @@
 import { Link } from "solito/link";
 import React from "react";
-import { Button, ButtonText, Heading } from "@native-base/ui-test";
+import { Button, ButtonText, Heading } from "@gluestack/ui";
 import { Text } from "react-native";
 
 export function DocsHeading() {

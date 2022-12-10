@@ -2,16 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@native-base/docs-test": [
-        "../.."
-      ]
+      "@gluestack/docs": ["../.."]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "allowJs": true,
     "moduleResolution": "node",
     "noEmit": true,

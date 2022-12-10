@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@native-base/babel-token-resolver": ["../../src"]
-      // "@native-base/styled-test": ["../../../styled/src/index"]
+      "@gluestack/babel-token-resolver": ["../../src"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",

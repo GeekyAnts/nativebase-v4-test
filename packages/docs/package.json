@@ -1,13 +1,13 @@
 {
   "version": "0.0.1",
-  "name": "@native-base/docs-test",
+  "name": "@gluestack/docs",
   "main": "index.ts",
   "dependencies": {
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.5.0",
     "expo-linking": "^3.0.0",
     "solito": "^2.0.0",
-    "@native-base/ui-test": "*"
+    "@gluestack/ui": "*"
   },
   "devDependencies": {
     "react": "^18.1.0",

@@ -4,9 +4,6 @@
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "noEmit": false,
-    // "paths": {
-    //   "@native-base/styled-test": ["../styled/src/index"]
-    // },
     "baseUrl": ".",
     "declaration": true,
     "allowUnreachableCode": false,

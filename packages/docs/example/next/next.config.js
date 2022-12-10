@@ -5,16 +5,13 @@ const nextConfig = {
   reactStrictMode: true,
   webpack5: true,
   resolve: {
-    "@native-base/docs-test": path.resolve(__dirname, "../../"),
+    "@gluestack/docs": path.resolve(__dirname, "../../"),
   },
 };
 
 const { withExpo } = require("@expo/next-adapter");
 const withPlugins = require("next-compose-plugins");
-const withTM = require("next-transpile-modules")([
-  "solito",
-  "@native-base/docs-test",
-]);
+const withTM = require("next-transpile-modules")(["solito", "@gluestack/docs"]);
 
 module.exports = withPlugins(
   [withTM, [withExpo, { projectRoot: __dirname }]],

@@ -5,7 +5,7 @@
     "emitDeclarationOnly": true,
     "noEmit": false,
     "paths": {
-      "@native-base/ui-test": ["../ui/src/index"]
+      "@gluestack/ui": ["../ui/src/index"]
     },
     "baseUrl": ".",
     "declaration": true,

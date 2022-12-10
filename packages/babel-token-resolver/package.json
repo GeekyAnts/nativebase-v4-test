@@ -1,6 +1,6 @@
 {
-  "name": "@native-base/babel-token-resolver",
-  "version": "1.0.7",
+  "name": "@gluestack/babel-token-resolver",
+  "version": "0.0.1",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "react-native": "src/index",

@@ -1,4 +1,4 @@
-import { styled } from "@native-base/styled-test";
+import { styled } from "@gluestack/styled";
 import { Pressable } from "react-native";
 export default styled(
   Pressable,

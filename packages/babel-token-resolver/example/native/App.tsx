@@ -1,7 +1,7 @@
 // import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-import { styled as xyz } from "@native-base/styled-test";
+import { styled as xyz } from "@gluestack/styled";
 
 const Box = xyz(
   View,

@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 // console.log("hello here");
-import { Button, ButtonText, Heading } from "@native-base/ui-test";
+import { Button, ButtonText, Heading } from "@gluestack/ui";
 // import { ButtonExpo } from "./button-expo";
 
 export default function App() {

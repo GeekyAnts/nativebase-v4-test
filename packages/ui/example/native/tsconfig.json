@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@native-base/ui-test": ["../../src/index"]
+      "@gluestack/ui": ["../../src/index"]
     },
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",

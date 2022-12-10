@@ -1,4 +1,4 @@
-import { DocsLanding } from "@native-base/docs-test/docs/landing";
+import { DocsLanding } from "@gluestack/docs/docs/landing";
 
 export default DocsLanding;
 

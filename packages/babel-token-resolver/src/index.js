@@ -73,7 +73,7 @@ module.exports = function (babel) {
           ImportSpecifier(importSpecPath) {
             if (
               importSpecPath.node.imported.name === "styled" &&
-              importSpecPath.parent.source.value === "@native-base/styled-test"
+              importSpecPath.parent.source.value === "@gluestack/styled"
             ) {
               isStyledImportedFromNativeBase = true;
               styledLocalCalleeName = importSpecPath.node.local.name;

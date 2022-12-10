@@ -1,4 +1,4 @@
-import { Provider } from "@native-base/docs-test/provider";
+import { Provider } from "@gluestack/docs/provider";
 import Head from "next/head";
 import React from "react";
 import type { SolitoAppProps } from "solito";

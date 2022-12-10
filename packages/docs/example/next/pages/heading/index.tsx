@@ -1,3 +1,3 @@
-import { DocsHeading } from "@native-base/docs-test/docs/heading";
+import { DocsHeading } from "@gluestack/docs/docs/heading";
 
 export default DocsHeading;

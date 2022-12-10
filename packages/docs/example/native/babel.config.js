@@ -9,7 +9,7 @@ module.exports = function (api) {
         {
           alias: {
             // For development, we want to alias the library to the source
-            ["@native-base/docs-test"]: path.join(__dirname, "../.."),
+            ["@gluestack/docs"]: path.join(__dirname, "../.."),
           },
         },
       ],
