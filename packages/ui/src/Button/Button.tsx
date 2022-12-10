@@ -2,6 +2,7 @@ import { useFocusRing } from "@react-native-aria/focus";
 import StyledButton from "./styled/Button";
 import React, { createContext, useState } from "react";
 import type { ButtonProps } from "./types";
+import { UIContext } from "../UIProvider";
 export const ButtonContext = createContext<any>({});
 
 export const useHover = () => {
@@ -57,9 +58,11 @@ export function Button({
   const { pressableProps, isPressed } = useIsPressed();
   let { isFocused, focusProps } = useFocus();
   const { isHovered, hoverProps }: any = useHover();
+  const { Button: MyStyledButton } = React.useContext(UIContext);
+  console.log(props, "&&");
 
   return (
-    <StyledButton
+    <MyStyledButton
       states={{
         hover: isHovered,
         focus: isFocused,
@@ -104,6 +107,6 @@ export function Button({
           </ButtonContext.Provider>
         );
       }}
-    </StyledButton>
+    </MyStyledButton>
   );
 }
